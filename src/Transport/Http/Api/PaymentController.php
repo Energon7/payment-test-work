@@ -27,7 +27,7 @@ class PaymentController extends BaseApiController
 
     #[Route(
         '/purchase',
-        name: "calculate_price",
+        name: "purchase",
         methods: ["POST"]
     )]
     public function purchase(#[FromRequest] PayCommand $command): JsonResponse

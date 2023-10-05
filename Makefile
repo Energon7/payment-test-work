@@ -37,3 +37,13 @@ drop-migrate:
 
 fixtures:
 	@make exec cmd="php bin/console doctrine:fixtures:load"
+
+install:
+	@make exec cmd="composer install"
+	@make migrate
+	@make fixtures
+
+start:
+	@docker-compose up -d
+stop:
+	@docker-compose down

@@ -10,15 +10,30 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-
+        bind:
+            $environment: '%kernel.environment%'
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
+
+
     App\:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    Tests\Fixtures\:
+        resource:
+            '%kernel.project_dir%/tests/Fixtures'
+        tags: [ 'doctrine.fixture.orm' ]
+
+    App\Modules\Payment\PaymentProcessor\PaypalPaymentProcessor:
+    App\Modules\Payment\PaymentProcessor\StripePaymentProcessor:
+    App\Modules\Payment\PaymentProcessor\PaymentProcessorFactory:
+            arguments:
+                $paypalPaymentProcessor: '@App\Modules\Payment\PaymentProcessor\PaypalPaymentProcessor'
+                $stripePaymentProcessor: '@App\Modules\Payment\PaymentProcessor\StripePaymentProcessor'
+
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

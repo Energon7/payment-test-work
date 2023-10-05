@@ -1,0 +1,7 @@
+api:
+  resource: ../../src/Transport/Http
+  type: annotation
+  name_prefix: api_
+kernel:
+  resource: ../../src/Kernel.php
+  type: annotation

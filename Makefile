@@ -39,6 +39,7 @@ fixtures:
 	@make exec cmd="php bin/console doctrine:fixtures:load"
 
 install:
+	@make start
 	@make exec cmd="composer install"
 	@make migrate
 	@make fixtures

@@ -22,7 +22,9 @@ class PaymentController extends BaseApiController
     )]
     public function calculatePrice(#[FromRequest] CalculatePriceCommand $command): JsonResponse
     {
-        return $this->apiJsonResponse(data: $this->commandBus->command($command));
+        return $this->apiJsonResponse(data: [
+            'price' => $this->commandBus->command($command)
+        ]);
     }
 
     #[Route(

@@ -18,7 +18,7 @@ class PercentPriceCouponFixture extends Fixture
             id: self::ID,
             code: self::CODE,
             discountType: DiscountType::PERCENT,
-            discountValue: 24
+            discountValue: 6
         );
         
         $manager->persist($product);
